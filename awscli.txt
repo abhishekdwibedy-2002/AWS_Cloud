@@ -1,0 +1,96 @@
+						   -------- Managing AWS Console From Command Line Interface(CLI) ----------
+
+
+
+In this we shall come across how can we use AWS services in Command line interface(CLI) . As in GUI(Graphical User Interface) there is lots of option available and we have to choose again and again and again, and you know in 21st century nobody (specially Developers)want to waste their time. So using CLI we can do every instruction and most of the practical in a single go.
+Task Description — AWS 👨🏻‍💻
+🔅 Create a key pair
+🔅 Create a security group
+🔅 Launch an instance using the above created key pair and security group.
+🔅 Create an EBS volume of 1 GB.
+🔅 The final step is to attach the above created EBS volume to the instance you created in the previous steps.
+All the above steps are being performed using AWS CLI . Let's Begin ...
+	
+	1. To perform all the above process we have to first install The AWS CLI software 
+
+		- Search on Google- “AWS CLI install” then click on that link.
+
+	2. Now click on this below link to download the software.
+
+		- https://awscli.amazonaws.com/AWSCLIV2.msi
+
+	3. Nextcheck in windows command prompt whether it is installed or not by typing 
+
+		-  command :- aws — version .
+
+	4. For Access to AWS CLI
+
+		- Before moving into CLI we must have an AWS account created and after that we will create a IAM user for an Authentication & get the Access Key and Secret Key.
+
+	5. New IAM User Is being created ...After Successful creation of IAM user now lets move to our CLI where we can authenticate to our AWS account using the IAM user that we created by providing the Access key, Secret key & Region, 
+
+		- command :- aws configure.
+
+ 	We have Configured successfully...!!!
+
+	6.  Now let’s see how to create a key pair :
+	    Before creating a new keypair let’s check how many keypair i have in my AWS Account in GUI.
+ 	    As we can see there is only one key pair present in my account which I had done before using the GUI interface .Now let’s create a new keypair by using CLI and see a new keypair is being created or not.
+	    By “help” command we can find our approach that what we have required to do after that.
+	    A new key-pair awscli is being created Successfully...!!!
+
+		- Command :- aws ec2 create-key-pair — key-name <value>
+
+				aws ec2 create-key-pair — key-name awscli is the command through which a new keypair is being created for us.
+				Now let’s check in GUI whether a new key pair named awscli is being created or not.
+
+	    We can see that a new key pair named awscli is being added to the list that we have been created through CLI.
+	7. Creating a Security group : Command
+	   A security group is something similar to a gate which acts as a virtual firewall for our instances to control inbound and outbound traffic.
+
+		- Command :- #aws ec2 create-security-group — group-name <value> — description <value>
+
+	   It’s being created in CLI .Let’s go and check in GUI whether it is created or not.
+	   A new security group is being created after we run the command.
+
+	8. Security group Description
+
+		- Command :- aws ec2 describe-security-groups --group-ids <value>
+	
+	9. Launch an instance using the above created key pair and security group :
+
+		- Command : aws ec2 run-instances — image-id <value> — instance-type <value> — count 1 — subnet-id subnet <value> — security-group-ids <value> — key-name <value>
+
+	10. We can also check from CLI whether it is running or not by using the 
+
+		- Command :- aws ec2 describe-instances --instance-ids <value>
+
+	11. Now we create an EBS volume of 1 GB :
+
+		- Command :- aws ec2 create-volume -- volume-type <value> -- size <value> -- availability-zone <value>
+
+	12. To attach the above created 1 GB of EBS volume to the AWS Ec2 Instance :
+
+		- Command :- aws ec2 attach-volume -- instance-id <value> -- volume-id <value> -- device <value>
+
+
+			Successfully Attached...!!!
+
+	13. At the same time we can detach the above created volume too from the instance created :
+
+		- Command :- aws ec2 detach-volume -- instance-id <value> -- volume-id <value> -- device <value>
+
+
+		       Detached successfully...!!!
+
+	14. Stop the instances the command :
+
+		- Command :- aws ec2 stop-instances — instance-id <value>
+
+		       Successfully stopped...!!!
+
+
+ Ya That's All from my side some basic CLI Command for AWS ..
+
+Hope u all liked it.
+!! HAPPY LEARNING !!
